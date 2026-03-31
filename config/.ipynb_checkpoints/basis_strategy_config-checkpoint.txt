@@ -1,0 +1,47 @@
+{
+  "api": {
+    "api_key_env": "KUCOIN_API_KEY",
+    "api_secret_env": "KUCOIN_API_SECRET",
+    "api_passphrase_env": "KUCOIN_API_PASSPHRASE",
+    "is_sandbox": false,
+    "spot_base_url": "https://api.kucoin.com",
+    "futures_base_url": "https://api-futures.kucoin.com"
+  },
+  "data": {
+    "spot_symbol": "BTC-USDT",
+    "futures_symbol": "XBTUSDTM",
+    "interval": "1day",
+    "baseline_history_months": 6,
+    "rl_history_years": 2,
+    "raw_dir": "data/raw",
+    "processed_dir": "data/processed"
+  },
+  "features": {
+    "zscore_window": 60,
+    "volatility_window": 20,
+    "volume_window": 20,
+    "basis_momentum_lag": 5
+  },
+  "baseline": {
+    "enter_zscore": 1.5,
+    "exit_zscore": 0.3,
+    "transaction_cost": 0.001,
+    "initial_capital": 10000.0
+  },
+  "rl": {
+    "episodes": 300,
+    "alpha": 0.1,
+    "gamma": 0.95,
+    "epsilon_start": 0.2,
+    "epsilon_end": 0.02,
+    "epsilon_decay": 0.97
+  },
+  "execution": {
+    "poll_seconds": 60,
+    "lookback_bars": 240,
+    "quote_notional_usdt": 100.0,
+    "leverage": 2,
+    "futures_contract_multiplier": 0.001,
+    "allow_spot_short": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "config_path": "/app/config/basis_strategy_config.json",
+  "trained_at_utc": "2026-03-30T17:52:26.026748+00:00",
+  "rows_used": 730,
+  "feature_columns": [
+    "spot_returns",
+    "fut_returns",
+    "volatility_20",
+    "basis_pct",
+    "basis_pct_lag_1",
+    "basis_zscore",
+    "basis_zscore_lag_1",
+    "basis_momentum",
+    "price_to_sma_20",
+    "price_to_sma_50",
+    "rsi",
+    "macd_hist",
+    "momentum_10",
+    "above_sma_20",
+    "above_sma_50",
+    "rolling_corr",
+    "log_spread"
+  ],
+  "episodes": 300,
+  "train_rows": 510,
+  "test_rows": 220
+}

@@ -1,0 +1,77 @@
+services:
+  btc-basis-live:
+    build:
+      context: .
+    image: crypto-rl-bot:latest
+    container_name: btc-basis-live
+    restart: unless-stopped
+    command:
+      - python
+      - run_trade_signal.py
+      - --mode
+      - live
+      - --run-real-order
+      - --config
+      - config/basis_strategy_config.json
+      - --model-path
+      - models/btc_basis_qlearning.json
+      - --env-file
+      - .runtime/kucoin.env
+    volumes:
+      - ./models:/app/models
+      - ./.runtime:/app/.runtime
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./data:/app/data
+
+  btc-basis-shadow-once:
+    image: crypto-rl-bot:latest
+    profiles: ["manual"]
+    command:
+      - python
+      - run_trade_signal.py
+      - --mode
+      - shadow
+      - --once
+      - --config
+      - config/basis_strategy_config.json
+      - --model-path
+      - models/btc_basis_qlearning.json
+      - --env-file
+      - .runtime/kucoin.env
+      - --train-if-missing
+    volumes:
+      - ./models:/app/models
+      - ./.runtime:/app/.runtime
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./data:/app/data
+
+  btc-basis-train-fast:
+    image: crypto-rl-bot:latest
+    profiles: ["manual"]
+    command:
+      - python
+      - run_trade_signal.py
+      - --mode
+      - train
+      - --episodes
+      - "10"
+      - --start
+      - "2026-03-01T00:00:00Z"
+      - --end
+      - "2026-03-10T00:00:00Z"
+      - --config
+      - config/basis_strategy_config.json
+      - --model-path
+      - models/btc_basis_qlearning.json
+      - --features-out
+      - reports/btc_basis_features.csv
+      - --env-file
+      - .runtime/kucoin.env
+    volumes:
+      - ./models:/app/models
+      - ./.runtime:/app/.runtime
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+      - ./data:/app/data

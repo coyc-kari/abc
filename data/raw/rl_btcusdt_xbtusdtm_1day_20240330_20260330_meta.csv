@@ -1,0 +1,2 @@
+prefix,saved_at_utc,rows_spot,rows_futures,rows_merged,start_utc,end_utc,interval
+rl_btcusdt_xbtusdtm_1day_20240330_20260330,2026-03-30T17:32:36.853847+00:00,730,731,730,2024-03-30 00:00:00+00:00,2026-03-29 00:00:00+00:00,1day
